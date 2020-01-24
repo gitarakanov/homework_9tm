@@ -1,0 +1,20 @@
+#Задание 1
+def black_white_picture():
+    from PIL import Image, ImageFilter  
+    import requests
+
+    try:
+        url = input()
+        #im = Image.open(requests.get(url, stream=True).raw)
+        im = Image.open(url)
+    except FileNotFoundError:
+        print("Файл не найден")
+    pixels = im.load()
+    x,y = im.size
+    for i in range (x):
+        for j in range(y):
+            r,g,b = pixels[i,j]
+            nc = (r + g + b)//3
+            pixels[i,j] = nc,nc,nc
+    im.save(input() + ".jpg")
+black_white_picture()
