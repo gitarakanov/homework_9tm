@@ -1,4 +1,4 @@
-#Задание 1
+#Задание 3
 def black_white_picture():
     from PIL import Image, ImageFilter  
     import requests
@@ -18,3 +18,60 @@ def black_white_picture():
             pixels[i,j] = nc,nc,nc
     im.save(input() + ".jpg")
 black_white_picture()
+
+
+#Задание 4
+def negativ_picture():
+    from PIL import Image, ImageFilter  
+    import requests
+
+    try:
+        url = input()
+        #im = Image.open(requests.get(url, stream=True).raw)
+        im = Image.open(url)
+    except FileNotFoundError:
+        print("Файл не найден")
+    pixels = im.load()
+    x,y = im.size
+    for i in range (x):
+        for j in range(y):
+            r,g,b = pixels[i,j]
+            pixels[i,j] = 255 - r, 255 - g, 255 - b
+    im.save(input() + ".jpg")
+negativ_picture()
+
+
+#Задание 5
+def picture_or_not():
+    from PIL import Image, ImageFilter  
+    import requests
+
+    try:
+        url = input()
+        #im = Image.open(requests.get(url, stream=True).raw)
+        l = len(url)
+        if url[l-3:] == 'png' or url[l-3:] == 'jpg' or url[l-3:] == 'gif':
+            print('True')
+        else:
+            print('False')
+    except FileNotFoundError:
+        print("Файл не найден")
+picture_or_not()
+
+
+#Задание 6
+def which_image():
+    from PIL import Image, ImageFilter  
+    import requests
+
+    try:
+        url = input()
+        #im = Image.open(requests.get(url, stream=True).raw)
+        l = len(url)
+        if url[l-3:] == 'png' or url[l-3:] == 'jpg' or url[l-3:] == 'gif':
+            print(url[l-3:])
+        else:
+            print('Not an image')
+    except FileNotFoundError:
+        print("Файл не найден")
+which_image()
